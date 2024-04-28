@@ -3,12 +3,14 @@ import '../style.scss';
 
 import Add from '../assets/addAvatar.png';
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { auth, storage, db } from '../firebase';
+import { auth, db, storage } from '../firebase';
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore";
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
   const [err, setErr] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -21,11 +23,12 @@ const Register = () => {
       // Create User
       const res = await createUserWithEmailAndPassword(auth, email, password)
 
-      // Create a Unique image name
+      // CREATE A UNIQUE IMAGE NAME
       const storageRef = ref(storage, displayName);
 
       const uploadTask = uploadBytesResumable(storageRef, file);
 
+      // REGISTER THREE OBSERVERS
       uploadTask.on(
         (error) => {
           setErr(true);
@@ -42,11 +45,13 @@ const Register = () => {
               email,
               photoURL: downloadURL,
             });
+            await setDoc(doc(db, "userChats", res.user.uid), {});
+            navigate("/");
           });
         }
       );
     } catch (err) {
-      setErr(true)
+      setErr(true);
     }
   };
 
@@ -56,7 +61,7 @@ const Register = () => {
          <span className='logo'>rak Chat</span>
          <span className='title'>Register</span>
          <form onSubmit={handleSubmit}>
-            <input type="text" placeholder='name' />
+            <input type="text" placeholder='display name' />
             <input type="email" placeholder='email' />
             <input type="password" placeholder='password' />
             <input style={{ display: 'none' }} type="file" id='file' />

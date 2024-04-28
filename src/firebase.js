@@ -9,7 +9,7 @@ const firebaseConfig = {
   projectId: "rak-chat",
   storageBucket: "rak-chat.appspot.com",
   messagingSenderId: "962508895954",
-  appId: "1:962508895954:web:638da08f3bc8a2aae41f0b"
+  appId: "1:962508895954:web:638da08f3bc8a2aae41f0b",
 };
 
 // Initialize Firebase
