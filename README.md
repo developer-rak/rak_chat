@@ -6,11 +6,10 @@
 
 ## Interface
 
-<img src='imgB.png' />
-
-## Mobile Interface
-
-<img src='imgS.png' />
+<img src='login.png' />
+<img src='register.png' />
+<img src='jane.png' />
+<img src='john.png' />
 
 ## Run Locally
 
