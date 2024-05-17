@@ -26,7 +26,7 @@
 
 ## ⚙️ Tech Stack
   - HTML5
-  - CSS3
+  - SASS
   - React, Hooks, React Router Dom
   - Firebase, Firebase Authentication, Firebase storage, Firebase Database
   - Netlify
